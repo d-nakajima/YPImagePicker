@@ -188,7 +188,7 @@ public struct YPConfigLibrary {
     public var isSquareByDefault = true
     
     /// hide cropSquareButton
-    public var hideCropSquareButton = false
+    public var hideSquareCropButton = false
     
 	/// Minimum width, to prevent selectiong too high images. Have sense if onlySquare is true and the image is portrait.
     public var minWidthForItem: CGFloat?
