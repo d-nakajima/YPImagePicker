@@ -304,3 +304,32 @@ public enum YPlibraryMediaType {
     case video
     case photoAndVideo
 }
+
+public enum YPImagePickerStep {
+    case pick
+    case multiImageGallary
+    case filter
+    case crop
+}
+
+extension YPCropType: Equatable {
+    public static func == (lhs: YPCropType, rhs: YPCropType) -> Bool {
+        return true
+    }
+}
+
+extension YPWordings {
+    public func detectTextByStep(config: YPImagePickerConfiguration, step: YPImagePickerStep) -> String {
+        let wordings = config.wordings
+        switch step {
+        case .pick:
+            return config.showsPhotoFilters || config.showsCrop != .none ? wordings.next : wordings.done
+        case .multiImageGallary:
+            return config.showsCrop != .none ? wordings.next : wordings.done
+        case .filter:
+            return config.showsCrop != .none ? wordings.next : wordings.done
+        case .crop:
+            return wordings.done
+        }
+    }
+}
