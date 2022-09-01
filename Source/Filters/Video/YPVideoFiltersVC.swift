@@ -137,7 +137,7 @@ public final class YPVideoFiltersVC: UIViewController, IsMediaFilterVC {
     }
 
     private func setupRightBarButtonItem() {
-        let rightBarButtonTitle = isFromSelectionVC ? YPConfig.wordings.done : YPConfig.wordings.next
+        let rightBarButtonTitle = isFromSelectionVC ? YPConfig.wordings.done : YPWordings().detectTextByStep(config: YPConfig, step: .filter)
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: rightBarButtonTitle,
                                                             style: .done,
                                                             target: self,

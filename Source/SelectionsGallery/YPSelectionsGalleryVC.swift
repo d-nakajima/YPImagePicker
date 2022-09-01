@@ -40,7 +40,8 @@ public class YPSelectionsGalleryVC: UIViewController, YPSelectionsGalleryCellDel
         v.collectionView.delegate = self
         
         // Setup navigation bar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: YPConfig.wordings.next,
+        let title = YPWordings().detectTextByStep(config: YPConfig, step: .multiImageGallary)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: title,
                                                             style: .done,
                                                             target: self,
                                                             action: #selector(done))
