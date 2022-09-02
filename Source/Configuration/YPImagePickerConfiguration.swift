@@ -312,22 +312,20 @@ public enum YPImagePickerStep {
     case crop
 }
 
-extension YPCropType: Equatable {
-    public static func == (lhs: YPCropType, rhs: YPCropType) -> Bool {
-        return true
-    }
-}
-
 extension YPWordings {
     public func detectTextByStep(config: YPImagePickerConfiguration, step: YPImagePickerStep) -> String {
         let wordings = config.wordings
         switch step {
         case .pick:
-            return config.showsPhotoFilters || config.showsCrop != .none ? wordings.next : wordings.done
+            if (config.showsPhotoFilters) { return wordings.next }
+            if case .none = config.showsCrop { return wordings.done }
+            else { return wordings.next }
         case .multiImageGallary:
-            return config.showsCrop != .none ? wordings.next : wordings.done
+            if case .none = config.showsCrop { return wordings.done }
+            else { return wordings.next }
         case .filter:
-            return config.showsCrop != .none ? wordings.next : wordings.done
+            if case .none = config.showsCrop { return wordings.done }
+            else { return wordings.next }
         case .crop:
             return wordings.done
         }
