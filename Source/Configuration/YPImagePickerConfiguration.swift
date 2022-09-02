@@ -307,20 +307,21 @@ public enum YPlibraryMediaType {
 
 public enum YPImagePickerStep {
     case pick
-    case multiImageGallary
+    case multipleGallary
     case filter
     case crop
 }
 
 extension YPWordings {
-    public func detectTextByStep(config: YPImagePickerConfiguration, step: YPImagePickerStep) -> String {
+    public func detectTextByStep(step: YPImagePickerStep) -> String {
+        let config = YPConfig
         let wordings = config.wordings
         switch step {
         case .pick:
             if (config.showsPhotoFilters) { return wordings.next }
             if case .none = config.showsCrop { return wordings.done }
             else { return wordings.next }
-        case .multiImageGallary:
+        case .multipleGallary:
             if case .none = config.showsCrop { return wordings.done }
             else { return wordings.next }
         case .filter:
